@@ -23,7 +23,7 @@ def which_bet():
 def take_bet_amount():
     """Take in betting amount, and validate infomration."""
     bet_amount = 0
-    while bet_amount <= 0 or bet_amount >= bank_account:
+    while bet_amount <= 0 or bet_amount > bank_account:
         print("How much would you like to bet?")
         bet_amount = int(input())
     return bet_amount
@@ -54,26 +54,17 @@ def take_bet_color():
 def roll_ball():
     """Return a random number between 0 and 37."""
     ball_number = random.randint(0, 37)
-    return 2
+    return ball_number
 
 
 def check_results_color(ball_number, bet_color):
     """Return comparisons between player's and random's color."""
-    try:
-        if green.index(ball_number) >= 0:
-            ball_color = "green"
-    except:
-        pass
-    try:
-        if red.index(ball_number) >= 0:
-            ball_color = "red"
-    except:
-        pass
-    try:
-        if black.index(ball_number) >= 0:
-            ball_color = "black"
-    except:
-        pass
+    if ball_number in green:
+        ball_color = "green"
+    if ball_number in red:
+        ball_color = "red"
+    if ball_number in black:
+        ball_color = "black"
     print("The ball landed on " + ball_color)
     if bet_color == ball_color:
         if bet_color == "green":
@@ -117,15 +108,18 @@ def payout(bet_amount, result):
 
 def play_again():
     """Checks if the player wants to play again."""
-    print("Would you like to keep playing?")
-    again = input()
-    if again == "yes":
-        play_game()
-    elif again == "no":
-        print("You left with $" + str(bank_account))
+    if bank_account == 0:
+        print("Sorry, you lost all of your money.")
     else:
-        print("Was that a 'yes' or a 'no'?")
-        play_game()
+        print("Would you like to keep playing?")
+        again = input()
+        if again == "yes":
+            play_game()
+        elif again == "no":
+            print("You left with $" + str(bank_account))
+        else:
+            print("Was that a 'yes' or a 'no'?")
+            play_game()
 
 
 def play_game():
