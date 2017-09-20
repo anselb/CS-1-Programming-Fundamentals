@@ -54,23 +54,23 @@ def take_bet_color():
 def roll_ball():
     """Return a random number between 0 and 37."""
     ball_number = random.randint(0, 37)
-    return ball_number
+    return 2
 
 
 def check_results_color(ball_number, bet_color):
     """Return comparisons between player's and random's color."""
     try:
-        if green.index(ball_number):
+        if green.index(ball_number) >= 0:
             ball_color = "green"
     except:
         pass
     try:
-        if red.index(ball_number):
+        if red.index(ball_number) >= 0:
             ball_color = "red"
     except:
         pass
     try:
-        if black.index(ball_number):
+        if black.index(ball_number) >= 0:
             ball_color = "black"
     except:
         pass
