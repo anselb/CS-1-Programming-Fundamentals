@@ -127,5 +127,4 @@ def hangman(secretWord):
 
 
 secretWord = loadWord()
-print(secretWebWord)
-hangman(secretWebWord)
+hangman(secretWord)
