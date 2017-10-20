@@ -1,0 +1,12 @@
+What were the inputs you gave the simulation? (Population size, percent vaccinated, virus name, mortality rate, basic reproductive rate)
+    python3 simulation.py 10000 0.90 Ebola 0.70 0.25 10
+
+What percentage of the population became infected at some point before the virus burned out?
+    11.94 percent of the population got infected.
+
+What percentage of the population died from the virus?
+    6.58 percent of the population died.
+
+Out of all interactions sick individuals had during the entire simulation, how many total interactions did we see where a vaccination saved a person from potentially becoming infected?
+    113462 were saved by a vaccination (including those who developed immunity after infection).
+    

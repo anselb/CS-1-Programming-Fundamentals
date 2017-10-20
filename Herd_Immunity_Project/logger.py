@@ -51,9 +51,14 @@ class Logger(object):
     '''
 
     def __init__(self, file_name):
-        # TODO:  Finish this initialization method.  The file_name passed should be the
+        # DONE:  Finish this initialization method.  The file_name passed should be the
         # full file name of the file that the logs will be written to.
-        self.file_name = None
+        self.file_name = file_name
+        f = open(self.file_name + '.txt', 'w')
+        f.close()
+
+        self.total_dead = 0
+        self.vacc_save = 0
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
                        basic_repro_num):
@@ -67,10 +72,14 @@ class Logger(object):
         # since 'w' overwrites the file.
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        pass
+        with open(self.file_name + '.txt', 'w') as f:
+            f.write('Population size: ' + str(pop_size) + '\t'
+                    'Percent vaccinated: ' + str(vacc_percentage) + '\t'
+                    'Virus name: ' + virus_name + '\t'
+                    'Mortality rate: ' + str(mortality_rate) + '\t'
+                    'Basic Reproduction Number: ' + str(basic_repro_num) + '\t\n')
 
-    def log_interaction(self, person1, person2, did_infect=None,
-                        person2_vacc=None, person2_sick=None):
+    def log_interaction(self, sick_person, random_person, did_infect=None):
         # TODO: Finish this method.  The Simulation object should use this method to
         # log every interaction a sick individual has during each time step.  This method
         # should accomplish this by using the information from person1 (the infected person),
@@ -82,17 +91,31 @@ class Logger(object):
         # all the possible edge cases!
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        pass
+        with open(self.file_name + '.txt', 'a') as f:
+            if did_infect:
+                f.write(str(sick_person._id) + ' infected ' + str(random_person._id) + '\n')
+            elif random_person.is_vaccinated:
+                f.write(str(sick_person._id) + ' did not infect ' + str(random_person._id) +
+                        ' because ' + str(random_person._id) + ' is vaccinated' + '\n')
+                self.vacc_save += 1
+            else:
+                f.write(str(sick_person._id) + ' did not infect ' + str(random_person._id) +
+                        ' because ' + str(random_person._id) + ' is already infected' + '\n')
 
-    def log_infection_survival(self, person, did_die_from_infection):
+    def log_infection_survival(self, person, survived):
         # TODO: Finish this method.  The Simulation object should use this method to log
         # the results of every call of a Person object's .resolve_infection() method.
-        # If the person survives, did_die_from_infection should be False.  Otherwise,
-        # did_die_from_infection should be True.  See the documentation for more details
+        # If the person survives, survived should be True.  Otherwise,
+        # survived should be True.  See the documentation for more details
         # on the format of the log.
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        pass
+        with open(self.file_name + '.txt', 'a') as f:
+            if survived:
+                f.write(str(person._id) + ' survived.' + '\n')
+            else:
+                f.write(str(person._id) + ' died.' + '\n')
+                self.total_dead += 1
 
     def log_time_step(self, time_step_number):
         # TODO: Finish this method.  This method should log when a time step ends, and a
@@ -103,4 +126,14 @@ class Logger(object):
         # to compute these statistics for you, as a Logger's job is just to write logs!
         # NOTE: Make sure to end every line with a '/n' character to ensure that each
         # event logged ends up on a separate line!
-        pass
+        with open(self.file_name + '.txt', 'a') as f:
+            f.write('Time step ' + str(time_step_number) + ' ended, '
+                    'beginning ' + str(time_step_number + 1) + '...' + '\n')
+
+    def log_final_stats(self, pop_size, total_infected):
+        percent_infected = total_infected / pop_size * 100
+        percent_dead = self.total_dead / pop_size * 100
+        with open(self.file_name + '.txt', 'a') as f:
+            f.write(str(round(percent_infected, 2)) + ' percent of the population got infected.' + '\n')
+            f.write(str(round(percent_dead, 2)) + ' percent of the population died.' + '\n')
+            f.write(str(self.vacc_save) + ' were saved by a vaccination.' + '\n')
