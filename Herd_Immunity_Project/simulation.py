@@ -103,7 +103,7 @@ class Simulation(object):
         self.population = self._create_population(initial_infected, vacc_percentage)
 
     def _create_population(self, initial_infected, vacc_percentage):
-        # TODO: Finish this method!  This method should be called when the simulation
+        # DONE: Finish this method!  This method should be called when the simulation
         # begins, to create the population that will be used. This method should return
         # an array filled with Person objects that matches the specifications of the
         # simulation (correct number of people in the population, correct percentage of
@@ -183,7 +183,7 @@ class Simulation(object):
         print('The simulation has ended after {} turns.'.format(time_step_counter))
 
     def time_step(self):
-        # TODO: Finish this method!  This method should contain all the basic logic
+        # DONE: Finish this method!  This method should contain all the basic logic
         # for computing one time step in the simulation.  This includes:
             # - For each infected person in the population:
             #        - Repeat for 100 total interactions:
@@ -215,7 +215,7 @@ class Simulation(object):
         self._infect_newly_infected()
 
     def interaction(self, sick_person, random_person):
-        # TODO: Finish this method! This method should be called any time two living
+        # DONE: Finish this method! This method should be called any time two living
         # people are selected for an interaction.  That means that only living people
         # should be passed into this method.  Assert statements are included to make sure
         # that this doesn't happen.
@@ -246,7 +246,7 @@ class Simulation(object):
         self.logger.log_interaction(sick_person, random_person, did_infect)
 
     def _infect_newly_infected(self):
-        # TODO: Finish this method! This method should be called at the end of
+        # DONE: Finish this method! This method should be called at the end of
         # every time step.  This method should iterate through the list stored in
         # self.newly_infected, which should be filled with the IDs of every person
         # created.  Iterate though this list.

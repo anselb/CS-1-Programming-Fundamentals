@@ -62,7 +62,7 @@ class Logger(object):
 
     def write_metadata(self, pop_size, vacc_percentage, virus_name, mortality_rate,
                        basic_repro_num):
-        # TODO: Finish this method.  The simulation class should use this method
+        # DONE: Finish this method.  The simulation class should use this method
         # immediately upon creation, to log the specific parameters of the simulation
         # as the first line of the file.  This line of metadata should be tab-delimited
         # (each item separated by a '\t' character).
@@ -80,7 +80,7 @@ class Logger(object):
                     'Basic Reproduction Number: ' + str(basic_repro_num) + '\t\n')
 
     def log_interaction(self, sick_person, random_person, did_infect=None):
-        # TODO: Finish this method.  The Simulation object should use this method to
+        # DONE: Finish this method.  The Simulation object should use this method to
         # log every interaction a sick individual has during each time step.  This method
         # should accomplish this by using the information from person1 (the infected person),
         # person2 (the person randomly chosen for the interaction), and the optional
@@ -103,7 +103,7 @@ class Logger(object):
                         ' because ' + str(random_person._id) + ' is already infected' + '\n')
 
     def log_infection_survival(self, person, survived):
-        # TODO: Finish this method.  The Simulation object should use this method to log
+        # DONE: Finish this method.  The Simulation object should use this method to log
         # the results of every call of a Person object's .resolve_infection() method.
         # If the person survives, survived should be True.  Otherwise,
         # survived should be True.  See the documentation for more details
@@ -118,7 +118,7 @@ class Logger(object):
                 self.total_dead += 1
 
     def log_time_step(self, time_step_number):
-        # TODO: Finish this method.  This method should log when a time step ends, and a
+        # DONE: Finish this method.  This method should log when a time step ends, and a
         # new one begins.  See the documentation for more information on the format of the log.
         # NOTE: Stretch challenge opportunity! Modify this method so that at the end of each time
         # step, it also logs a summary of what happened in that time step, including the number of
