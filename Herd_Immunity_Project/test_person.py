@@ -12,4 +12,9 @@ def test_person():
 def test_did_survive_infection():
     new_person = test_person()
     assert new_person.did_survive_infection(1) == False
+    assert new_person.is_alive == False
+
+    new_person.is_alive = True
     assert new_person.did_survive_infection(0) == True
+    assert new_person.infected == False
+    assert new_person.is_vaccinated == True

@@ -1,8 +1,4 @@
 {
-  "test_logger.py::test_log_infection_survival": true,
-  "test_logger.py::test_log_interaction": true,
-  "test_logger.py::test_log_time_step": true,
-  "test_logger.py::test_write_metadata": true,
   "test_simulation.py::test_create_population": true,
   "test_simulation.py::test_interaction": true
 }
