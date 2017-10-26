@@ -142,7 +142,6 @@ class Simulation(object):
         #     - The entire population is dead.
         #     - There are no infected people left in the population.
         # In all other instances, the simulation should continue.
-        # FIX FIX FIX FIX FIX
         if self.total_infected == self.population_size:
             print('everyone infected')
             return False

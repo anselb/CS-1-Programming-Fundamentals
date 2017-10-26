@@ -1,0 +1,1 @@
+Population size: 1000	Percent vaccinated: 0.9	Virus name: Test	Mortality rate: 0.7	Basic Reproduction Number: 0.25
