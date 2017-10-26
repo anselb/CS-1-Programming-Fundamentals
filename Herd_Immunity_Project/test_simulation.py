@@ -60,12 +60,14 @@ def test_run(capfd):
 def test_time_step():
     """Make sure infected interactions occur and infection attempts to kill"""
     new_simulation = test_simulation()
+    # Write test
 
 
 def test_interaction():
     # sick_person, random_person
     """Should only return True when person gets infected"""
     new_simulation = test_simulation()
+    # Write test
 
 
 def test_infect_newly_infected():
